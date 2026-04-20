@@ -85,6 +85,38 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.21.0</version>
+        <configuration>
+          <rulesets>
+            <ruleset>customize-rules.xml</ruleset>
+          </rulesets>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.12.1</version>
+      </plugin>
+
+      <!-- 配合 site-plugin 使用的信息报告插件 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.4.5</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>${org.apache.maven.plugins.maven-antrun-plugin.version}</version>
       </plugin>
@@ -118,6 +150,27 @@
       </plugin>
     </plugins>
   </build>
+  <distributionManagement>
+    <site>
+      <id>local-site</id>
+      <url>file://${project.basedir}/target/site-deploy</url>
+    </site>
+  </distributionManagement>
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.21.0</version>
+        <configuration>
+          <rulesets>
+            <ruleset>customize-rules.xml</ruleset>
+          </rulesets>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <modules>
     <module>docs-core</module>

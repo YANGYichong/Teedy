@@ -1,0 +1,20 @@
+<ruleset name="Practice7-Metrics-Ruleset"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>Practice 7: LoC, CC, WMC, CBO, LCOM</description>
+
+    <!-- 1. Lines of code (LoC): 代码行数 -->
+    <rule ref="category/java/design.xml/NcssCount" />
+
+    <!-- 2. Cyclomatic Complexity (CC): 圈复杂度  -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity" />
+
+    <!-- 3. Coupling Between Objects (CBO): 对象间耦合度  -->
+    <rule ref="category/java/design.xml/CouplingBetweenObjects" />
+
+    <!-- 4 & 5. WMC（加权方法数） & LCOM（紧密度内聚数）: GodClass 规则 -->
+    <rule ref="category/java/design.xml/GodClass" />
+
+</ruleset>
