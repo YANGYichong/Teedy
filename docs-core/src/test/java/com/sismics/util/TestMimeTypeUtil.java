@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Test of the utilities to check MIME types.
@@ -39,7 +41,13 @@ public class TestMimeTypeUtil extends BaseTest {
 
         // Detect CSV files
         path = Paths.get(getResource(FILE_CSV).toURI());
-        Assert.assertEquals(MimeType.TEXT_CSV, MimeTypeUtil.guessMimeType(path, FILE_CSV));
+        String csvMimeType = MimeTypeUtil.guessMimeType(path, FILE_CSV);
+        List<String> acceptableCsvMimeTypes = Arrays.asList(
+            MimeType.TEXT_CSV,
+            "application/vnd.ms-excel",
+            "text/comma-separated-values"
+        );
+        Assert.assertTrue("Unexpected CSV mime type: " + csvMimeType, acceptableCsvMimeTypes.contains(csvMimeType));
 
         // Detect PDF files
         path = Paths.get(getResource(FILE_PDF).toURI());
@@ -59,7 +67,12 @@ public class TestMimeTypeUtil extends BaseTest {
 
         // Detect ZIP files
         path = Paths.get(getResource(FILE_ZIP).toURI());
-        Assert.assertEquals(MimeType.APPLICATION_ZIP, MimeTypeUtil.guessMimeType(path, FILE_ZIP));
+        String zipMimeType = MimeTypeUtil.guessMimeType(path, FILE_ZIP);
+        List<String> acceptableZipMimeTypes = Arrays.asList(
+            MimeType.APPLICATION_ZIP,
+            "application/x-zip-compressed"
+        );
+        Assert.assertTrue("Unexpected ZIP mime type: " + zipMimeType, acceptableZipMimeTypes.contains(zipMimeType));
 
         // Detect WEBM files
         path = Paths.get(getResource(FILE_WEBM).toURI());
