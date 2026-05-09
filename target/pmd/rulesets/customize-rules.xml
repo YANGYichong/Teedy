@@ -8,13 +8,13 @@
     <!-- 1. Lines of code (LoC): 代码行数 -->
     <rule ref="category/java/design.xml/NcssCount" />
 
-    <!-- 2. Cyclomatic Complexity (CC): 圈复杂度 (截图里出现的规则) -->
+    <!-- 2. Cyclomatic Complexity (CC): 圈复杂度  -->
     <rule ref="category/java/design.xml/CyclomaticComplexity" />
 
-    <!-- 3. Coupling Between Objects (CBO): 对象间耦合度 (截图里出现的规则) -->
+    <!-- 3. Coupling Between Objects (CBO): 对象间耦合度  -->
     <rule ref="category/java/design.xml/CouplingBetweenObjects" />
 
-    <!-- 4 & 5. WMC & LCOM: GodClass 规则底层正是依赖 WMC 和类内聚度(LCOM的体现) 进行判定 -->
+    <!-- 4 & 5. WMC（加权方法数） & LCOM（紧密度内聚数）: GodClass 规则 -->
     <rule ref="category/java/design.xml/GodClass" />
 
 </ruleset>
