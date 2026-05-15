@@ -28,6 +28,8 @@ import static org.apache.pdfbox.pdmodel.font.UniUtil.getUniNameOfCodePoint;
  *
  * @author bgamard
  */
+
+@SuppressWarnings("PMD")
 public class DocsPDType1Font extends PDSimpleFont {
     private static final Log LOG = LogFactory.getLog(DocsPDType1Font.class);
 
@@ -317,3 +319,4 @@ public class DocsPDType1Font extends PDSimpleFont {
         return isDamaged;
     }
 }
+

@@ -32,6 +32,8 @@ import java.util.List;
  * @author bgamard
  */
 @Path("/routemodel")
+
+@SuppressWarnings("PMD")
 public class RouteModelResource extends BaseResource {
     /**
      * Returns the list of all route models.
@@ -395,3 +397,4 @@ public class RouteModelResource extends BaseResource {
         return Response.ok().entity(response.build()).build();
     }
 }
+

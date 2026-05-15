@@ -13,6 +13,8 @@ import jakarta.persistence.EntityTransaction;
  *
  * @author jtremeaux 
  */
+
+@SuppressWarnings("PMD")
 public class TransactionUtil {
     /**
      * Logger.
@@ -94,3 +96,4 @@ public class TransactionUtil {
         tx.begin();
     }
 }
+

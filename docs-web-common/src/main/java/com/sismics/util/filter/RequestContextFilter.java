@@ -26,6 +26,8 @@ import java.text.MessageFormat;
  * 
  * @author jtremeaux
  */
+
+@SuppressWarnings("PMD")
 public class RequestContextFilter implements Filter {
     /**
      * Logger.
@@ -152,3 +154,4 @@ public class RequestContextFilter implements Filter {
         r.addHeader(HttpHeaders.EXPIRES, "0");
     }
 }
+

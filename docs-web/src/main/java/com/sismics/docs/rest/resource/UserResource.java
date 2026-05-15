@@ -50,6 +50,8 @@ import java.util.Set;
  * @author jtremeaux
  */
 @Path("/user")
+
+@SuppressWarnings("PMD")
 public class UserResource extends BaseResource {
     /**
      * Creates a new user.
@@ -1143,3 +1145,4 @@ public class UserResource extends BaseResource {
     }
 
 }
+

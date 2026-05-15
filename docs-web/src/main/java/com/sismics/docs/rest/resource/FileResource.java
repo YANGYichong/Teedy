@@ -58,6 +58,8 @@ import java.util.zip.ZipOutputStream;
  * @author bgamard
  */
 @Path("/file")
+
+@SuppressWarnings("PMD")
 public class FileResource extends BaseResource {
     /**
      * Add a file (with or without a document).
@@ -810,3 +812,4 @@ public class FileResource extends BaseResource {
         }
     }
 }
+

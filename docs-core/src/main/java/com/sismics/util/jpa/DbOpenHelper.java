@@ -199,3 +199,4 @@ abstract class DbOpenHelper {
         this.formatter = (format ? FormatStyle.DDL : FormatStyle.NONE).getFormatter();
     }
 }
+

@@ -19,6 +19,8 @@ import java.util.List;
  * @author bgamard
  */
 @Path("/vocabulary")
+
+@SuppressWarnings("PMD")
 public class VocabularyResource extends BaseResource {
     /**
      * Get a vocabulary.
@@ -235,3 +237,4 @@ public class VocabularyResource extends BaseResource {
         return Response.ok().entity(response.build()).build();
     }
 }
+

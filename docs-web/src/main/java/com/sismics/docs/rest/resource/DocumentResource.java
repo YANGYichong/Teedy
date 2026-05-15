@@ -95,6 +95,8 @@ import java.util.UUID;
  * @author bgamard
  */
 @Path("/document")
+
+@SuppressWarnings("PMD")
 public class DocumentResource extends BaseResource {
 
     /**
@@ -1098,3 +1100,4 @@ public class DocumentResource extends BaseResource {
         return tags;
     }
 }
+

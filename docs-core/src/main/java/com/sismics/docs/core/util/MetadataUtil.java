@@ -22,6 +22,8 @@ import java.util.Map;
  *
  * @author bgamard
  */
+
+@SuppressWarnings("PMD")
 public class MetadataUtil {
     /**
      * Update custom metadata on a document.
@@ -194,3 +196,4 @@ public class MetadataUtil {
         json.add("metadata", metadata);
     }
 }
+

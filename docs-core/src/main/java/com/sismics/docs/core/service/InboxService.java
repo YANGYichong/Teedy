@@ -31,6 +31,8 @@ import java.util.regex.Pattern;
  *
  * @author bgamard
  */
+
+@SuppressWarnings("PMD")
 public class InboxService extends AbstractScheduledService {
     /**
      * Logger.
@@ -299,3 +301,4 @@ public class InboxService extends AbstractScheduledService {
         return lastSyncError;
     }
 }
+

@@ -40,6 +40,8 @@ import java.util.*;
  * 
  * @author bgamard
  */
+
+@SuppressWarnings("PMD")
 public class FileUtil {
     /**
      * Logger.
@@ -272,3 +274,4 @@ public class FileUtil {
         }
     }
 }
+

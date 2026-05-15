@@ -71,6 +71,8 @@ import java.util.UUID;
  * @author bgamard
  */
 @ClasspathScanner.Priority(100)
+
+@SuppressWarnings("PMD")
 public class LuceneIndexingHandler implements IndexingHandler {
     /**
      * Logger.
@@ -622,3 +624,4 @@ public class LuceneIndexingHandler implements IndexingHandler {
         void run(IndexWriter indexWriter) throws Exception;
     }
 }
+

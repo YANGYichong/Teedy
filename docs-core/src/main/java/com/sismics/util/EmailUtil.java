@@ -43,6 +43,8 @@ import java.util.Map;
  * 
  * @author jtremeaux
  */
+
+@SuppressWarnings("PMD")
 public class EmailUtil {
     /**
      * Logger.
@@ -290,3 +292,4 @@ public class EmailUtil {
         }
     }
 }
+

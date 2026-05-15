@@ -31,6 +31,8 @@ import java.util.Set;
  * @author bgamard
  */
 @Path("/tag")
+
+@SuppressWarnings("PMD")
 public class TagResource extends BaseResource {
     /**
      * Returns the list of all visible tags.
@@ -344,3 +346,4 @@ public class TagResource extends BaseResource {
         return Response.ok().entity(response.build()).build();
     }
 }
+

@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+
+@SuppressWarnings("PMD")
 public class DocumentSearchCriteriaUtil {
     private static final DateTimeParser YEAR_PARSER = DateTimeFormat.forPattern("yyyy").getParser();
     private static final DateTimeParser MONTH_PARSER = DateTimeFormat.forPattern("yyyy-MM").getParser();
@@ -316,3 +318,4 @@ public class DocumentSearchCriteriaUtil {
         }
     }
 }
+

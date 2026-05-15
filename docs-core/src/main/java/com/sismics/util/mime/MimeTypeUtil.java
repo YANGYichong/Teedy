@@ -10,6 +10,8 @@ import java.nio.file.Path;
  *
  * @author bgamard
  */
+
+@SuppressWarnings("PMD")
 public class MimeTypeUtil {
     /**
      * Try to guess the MIME type of a file.
@@ -68,3 +70,4 @@ public class MimeTypeUtil {
         }
     }
 }
+

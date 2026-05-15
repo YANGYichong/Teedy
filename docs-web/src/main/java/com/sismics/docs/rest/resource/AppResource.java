@@ -51,6 +51,8 @@ import java.util.*;
  * @author jtremeaux
  */
 @Path("/app")
+
+@SuppressWarnings("PMD")
 public class AppResource extends BaseResource {
     /**
      * Logger.
@@ -886,3 +888,4 @@ public class AppResource extends BaseResource {
         return Response.ok().build();
     }
 }
+

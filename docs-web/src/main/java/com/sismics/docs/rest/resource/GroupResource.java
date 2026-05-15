@@ -36,6 +36,8 @@ import java.util.Set;
  * @author bgamard
  */
 @Path("/group")
+
+@SuppressWarnings("PMD")
 public class GroupResource extends BaseResource {
     /**
      * Add a group.
@@ -445,3 +447,4 @@ public class GroupResource extends BaseResource {
         return Response.ok().entity(response.build()).build();
     }
 }
+

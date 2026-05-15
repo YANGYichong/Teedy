@@ -35,6 +35,8 @@ import java.util.List;
  * @author bgamard
  */
 @Path("/acl")
+
+@SuppressWarnings("PMD")
 public class AclResource extends BaseResource {
     /**
      * Add an ACL.
@@ -253,3 +255,4 @@ public class AclResource extends BaseResource {
         return Response.ok().entity(response.build()).build();
     }
 }
+

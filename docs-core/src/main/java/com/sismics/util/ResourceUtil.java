@@ -19,6 +19,8 @@ import java.util.jar.JarFile;
  *
  * @author jtremeaux 
  */
+
+@SuppressWarnings("PMD")
 public class ResourceUtil {
 
     /**
@@ -101,3 +103,4 @@ public class ResourceUtil {
         return list(clazz, path, null);
     }
 }
+

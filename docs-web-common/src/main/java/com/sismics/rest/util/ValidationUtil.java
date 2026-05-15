@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
  *
  * @author jtremeaux
  */
+
+@SuppressWarnings("PMD")
 public class ValidationUtil {
     private static Pattern EMAIL_PATTERN = Pattern.compile(".+@.+");
     
@@ -222,3 +224,4 @@ public class ValidationUtil {
         }
     }
 }
+

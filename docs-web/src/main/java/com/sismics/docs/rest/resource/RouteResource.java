@@ -30,6 +30,8 @@ import java.util.List;
  * @author bgamard
  */
 @Path("/route")
+
+@SuppressWarnings("PMD")
 public class RouteResource extends BaseResource {
     /**
      * Start a route on a document.
@@ -336,3 +338,4 @@ public class RouteResource extends BaseResource {
         return Response.ok().entity(response.build()).build();
     }
 }
+

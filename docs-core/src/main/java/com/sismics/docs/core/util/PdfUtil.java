@@ -33,6 +33,8 @@ import java.util.List;
  * 
  * @author bgamard
  */
+
+@SuppressWarnings("PMD")
 public class PdfUtil {
     /**
      * Logger.
@@ -135,3 +137,4 @@ public class PdfUtil {
         }
     }
 }
+

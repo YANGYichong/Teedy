@@ -14,6 +14,8 @@ import com.sismics.util.EnvironmentUtil;
  * 
  * @author jtremeaux
  */
+
+@SuppressWarnings("PMD")
 public class DirectoryUtil {
     /**
      * Returns the base data directory.
@@ -30,13 +32,7 @@ public class DirectoryUtil {
             baseDataDir = Paths.get(System.getProperty("java.io.tmpdir"));
         } else {
             // We are in a webapp environment and nothing is specified, use the default directory for this OS
-            if (EnvironmentUtil.isUnix()) {
-                baseDataDir = Paths.get("/var/docs");
-            } if (EnvironmentUtil.isWindows()) {
-                baseDataDir = Paths.get(EnvironmentUtil.getWindowsAppData() + "\\Sismics\\Docs");
-            } else if (EnvironmentUtil.isMacOs()) {
-                baseDataDir = Paths.get(EnvironmentUtil.getMacOsUserHome() + "/Library/Sismics/Docs");
-            }
+            baseDataDir = getDefaultOsDirectory();
         }
 
         if (baseDataDir != null && !Files.isDirectory(baseDataDir)) {
@@ -48,6 +44,19 @@ public class DirectoryUtil {
         }
 
         return baseDataDir;
+    }
+
+    private static Path getDefaultOsDirectory() {
+        if (EnvironmentUtil.isUnix()) {
+            return Paths.get("/var/docs");
+        } 
+        if (EnvironmentUtil.isWindows()) {
+            return Paths.get(EnvironmentUtil.getWindowsAppData() + "\\Sismics\\Docs");
+        } 
+        if (EnvironmentUtil.isMacOs()) {
+            return Paths.get(EnvironmentUtil.getMacOsUserHome() + "/Library/Sismics/Docs");
+        }
+        return null;
     }
     
     /**
@@ -113,3 +122,4 @@ public class DirectoryUtil {
         return directory;
     }
 }
+

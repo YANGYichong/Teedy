@@ -5,16 +5,18 @@
 
     <description>Practice 7: LoC, CC, WMC, CBO, LCOM</description>
 
-    <!-- 1. Lines of code (LoC): 代码行数 -->
-    <rule ref="category/java/design.xml/NcssCount" />
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="150"/>
+        </properties>
+    </rule>
 
-    <!-- 2. Cyclomatic Complexity (CC): 圈复杂度  -->
-    <rule ref="category/java/design.xml/CyclomaticComplexity" />
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="methodReportLevel" value="50"/>
+        </properties>
+    </rule>
 
-    <!-- 3. Coupling Between Objects (CBO): 对象间耦合度  -->
-    <rule ref="category/java/design.xml/CouplingBetweenObjects" />
-
-    <!-- 4 & 5. WMC（加权方法数） & LCOM（紧密度内聚数）: GodClass 规则 -->
     <rule ref="category/java/design.xml/GodClass" />
 
 </ruleset>

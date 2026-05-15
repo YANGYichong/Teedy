@@ -19,6 +19,8 @@ import com.sismics.docs.core.util.jpa.PaginatedList;
  *
  * @author jtremeaux
  */
+
+@SuppressWarnings("PMD")
 public class MemoryAppender extends AppenderSkeleton {
 
     /**

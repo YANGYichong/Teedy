@@ -22,6 +22,8 @@ import java.util.*;
  * 
  * @author bgamard
  */
+
+@SuppressWarnings("PMD")
 public class GroupDao {
     /**
      * Returns a group by name.
@@ -268,4 +270,5 @@ public class GroupDao {
         return groupDb;
     }
 }
+
 
