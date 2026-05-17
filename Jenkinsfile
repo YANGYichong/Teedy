@@ -1,33 +1,57 @@
-// Jenkins pipeline for building and pushing Teedy Docker image
+// Jenkins pipeline for building and pushing Teedy Docker image (customized)
 pipeline {
   agent any
 
   environment {
-    // Set this to your Docker Hub repository (override in Jenkins job if needed)
-    DOCKER_REPO = "<your-dockerhub-username>/teedy"
-    // Credentials ID in Jenkins (create a Username with password credential)
-    DOCKER_CREDENTIALS_ID = 'dockerhub_credentials'
+    // Jenkins credentials ID for Docker Hub (must exist in Jenkins)
+    DOCKER_HUB_CREDENTIALS = 'dockerhub_credentials'
+    // Use your Docker Hub repo (updated for your account)
+    DOCKER_IMAGE = 'yangyichong/teedy'
+    DOCKER_TAG = "${env.BUILD_NUMBER}"
   }
 
   stages {
     stage('Checkout') {
       steps {
-        checkout scm
+        // checkout from your GitHub repository
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/YANGYichong/Teedy.git']]])
       }
     }
 
-    stage('Build Docker image') {
+    stage('Build') {
       steps {
-        sh 'docker --version || true'
-        sh 'docker build -t ${DOCKER_REPO}:${BUILD_NUMBER} .'
+        // build the project (requires Maven on the agent) - adapt to your agent if needed
+        sh 'mvn -B -DskipTests clean package'
       }
     }
 
-    stage('Push to Docker Hub') {
+    stage('Building image') {
       steps {
-        withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
-          sh 'echo $DH_PASS | docker login -u $DH_USER --password-stdin'
-          sh 'docker push ${DOCKER_REPO}:${BUILD_NUMBER}'
+        script {
+          docker.build("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}")
+        }
+      }
+    }
+
+    stage('Upload image') {
+      steps {
+        script {
+          docker.withRegistry('https://registry.hub.docker.com', DOCKER_HUB_CREDENTIALS) {
+            docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").push()
+            // optional: tag as latest
+            docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").push('latest')
+          }
+        }
+      }
+    }
+
+    stage('Run containers') {
+      steps {
+        script {
+          sh 'docker stop teedy-container-8081 || true'
+          sh 'docker rm teedy-container-8081 || true'
+          docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").run('--name teedy-container-8081 -d -p 8081:8080')
+          sh 'docker ps --filter "name=teedy-container"'
         }
       }
     }
@@ -35,11 +59,10 @@ pipeline {
 
   post {
     always {
-      // keep last image tag reference available in the build logs
-      echo "Built image: ${DOCKER_REPO}:${BUILD_NUMBER}"
+      echo "Built image: ${env.DOCKER_IMAGE}:${env.DOCKER_TAG}"
     }
     success {
-      echo 'Docker image pushed successfully.'
+      echo 'Docker image pushed and container started.'
     }
     failure {
       echo 'Build or push failed. Check the logs.'
@@ -47,11 +70,10 @@ pipeline {
   }
 }
 
-// Usage notes:
-// 1) In Jenkins, create a credential (kind: Username with password) and give it the ID
-//    'dockerhub_credentials' (or change DOCKER_CREDENTIALS_ID above).
-// 2) Ensure the Jenkins agent has Docker installed and permissions to run Docker commands.
-// 3) Optionally parameterize DOCKER_REPO or branch filters per your CI policy.
+// Notes:
+// - This Jenkinsfile assumes the agent can run shell commands and has Docker & Maven installed.
+// - If your Jenkins agent is Windows-only, replace 'sh' with 'bat' where appropriate, or run the job on a linux-labeled agent.
+// - You can override DOCKER_IMAGE via job parameters or environment variables in Jenkins.
 pipeline {
     agent any
     stages {
