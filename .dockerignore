@@ -1,0 +1,5 @@
+data
+.git
+**/target
+docs-web/src/main/webapp/node_modules
+docs-web/src/main/webapp/dist
